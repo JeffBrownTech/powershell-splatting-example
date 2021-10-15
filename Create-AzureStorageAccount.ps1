@@ -23,6 +23,7 @@ $stgAcctArgs = @{
 }
 
 # Update properties of the hash table based on the environment
+# Prod condition adds more key/value pairs to the hash table
 switch ($Environment) {
     "Dev" { 
         $stgAcctArgs.AccountName += "dev"
@@ -42,6 +43,8 @@ switch ($Environment) {
         $stgAcctArgs.AccountName += "prod"
         $stgAcctArgs.Location = "southcentralus"
         $stgAcctArgs.SkuName = "Premium_LRS"
+        $stgAcctArgs.EnableHttpsTrafficOnly = $true
+        $stgAcctArgs.MinimumTlsVersion = "TLS1_2"
         break
     }
 }
